@@ -1,0 +1,42 @@
+plugins {
+    id 'java'
+    id 'application'
+}
+
+group 'com.javarush.task.task01'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+
+mainClassName = 'com.javarush.task.task01.task0132.Solution'
+
+repositories {
+    mavenCentral()
+}
+
+def org_junit_version = '5.5.2'
+
+dependencies {
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.13.2'
+    testCompile group: 'org.junit.jupiter', name: 'junit-jupiter-engine', version: org_junit_version
+    testCompile group: 'org.junit.platform', name: 'junit-platform-launcher', version: '1.5.2'
+    testCompile group: 'org.junit.vintage', name: 'junit-vintage-engine', version: org_junit_version
+    testCompile group: 'org.mockito', name: 'mockito-core', version: '3.1.0'
+}
+
+task fatJar(type: Jar) {
+    manifest {
+        attributes 'Implementation-Title': 'Gradle Scala FatJar',
+                'Implementation-Version': getArchiveVersion(),
+                'Main-Class': mainClassName,
+                'Implementation-Vendor': 'vskurikhin'
+    }
+    baseName = project.name + '-all'
+    from { configurations.compile.collect { it.isDirectory() ? it : zipTree(it) } }
+    with jar
+}
+
+test {
+    useJUnitPlatform()
+    maxHeapSize = '1G'
+}
