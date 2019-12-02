@@ -35,41 +35,36 @@ package su.svn.chap12;
 
 // Магия. Не трогать.
 
-import java.io.*;
-import java.lang.reflect.*;
-import java.util.*;
-import java.util.function.*;
-import java.util.stream.*;
-
 public class Solution {
-    static void answer(Answers result) {
-        switch(result) {
-            case NO:
-                System.out.println("No");
-                break;
-            case YES:
-                System.out.println("Yes");
-                break;
-            case MAYBE:
-                System.out.println("Maybe");
-                break;
-            case LATER:
-                System.out.println("Later");
-                break;
-            case SOON:
-                System.out.println("Soon");
-                break;
-            case NEVER:
-                System.out.println("Never");
-                break;
-        }
+
+    private static void separator(Class<?> c) {
+        System.out.println();
+        for (int j = 0; j < 80; ++j)
+            System.out.print('#');
+        System.out.println();
+        System.out.println("###");
+        System.out.println("### " + c.getSimpleName());
+        System.out.println("###");
     }
 
     public static void main(String args[]) {
-        Question q = new Question();
-        answer(q.ask());
-        answer(q.ask());
-        answer(q.ask());
-        answer(q.ask());
+        separator(AskMe.class);
+        AskMe.main(args);
+        separator(EnumDemo.class);
+        EnumDemo.main(args);
+        separator(Marker.class);
+        Marker.main(args);
+        separator(Meta.class);
+        Meta.main(args);
+        separator(Meta2.class);
+        Meta2.main(args);
+        separator(Meta3.class);
+        Meta3.main(args);
+        separator(RepeatAnno.class);
+        RepeatAnno.main(args);
+        separator(Single.class);
+        Single.main(args);
+        separator(TypeAnnoDemo.class);
+        TypeAnnoDemo.main(args);
     }
 }
