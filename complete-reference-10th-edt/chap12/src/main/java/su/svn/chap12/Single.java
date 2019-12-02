@@ -1,9 +1,9 @@
 package su.svn.chap12;
 
-import java.lang.annotation.*;
 import java.lang.reflect.*;
 
 // A single-member annotation.
+
 class Single {
 
     // Annotate a method using a marker.

@@ -1,9 +1,7 @@
 package su.svn.chap12;
 
-import java.lang.annotation.*;
-import java.lang.reflect.*;
-
 // Use an annotation on a type parameter.
+
 class TypeAnnoDemo<@What(description = "Generic data type") T> {
 
     // Use a type annotation on a constructor.
