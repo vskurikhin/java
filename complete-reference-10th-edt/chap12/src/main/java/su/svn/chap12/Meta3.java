@@ -1,6 +1,5 @@
 package su.svn.chap12;
 
-import java.lang.annotation.*;
 import java.lang.reflect.*;
 
 class Meta3 {
