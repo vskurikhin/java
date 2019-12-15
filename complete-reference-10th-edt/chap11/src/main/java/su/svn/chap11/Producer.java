@@ -6,7 +6,7 @@ public class Producer implements Runnable {
 
     Producer(Q q) {
         this.q = q;
-        t = new Thread(this, "Producer");
+        t = new Thread(this, "Поставщик");
     }
 
     public void run() {

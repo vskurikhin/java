@@ -2,44 +2,45 @@ package su.svn.chap11;
 
 public class Deadlock implements Runnable {
     // An example of deadlock.
+    // Пример взаимной блокировки
     static class A {
         synchronized void foo(B b) {
             String name = Thread.currentThread().getName();
 
-            System.out.println(name + " entered A.foo");
+            System.out.println(name + "вошел в метод A.foo()");
 
             try {
                 Thread.sleep(1000);
             } catch(Exception e) {
-                System.out.println("A Interrupted");
+                System.out.println("Класс A прерван");
             }
 
-            System.out.println(name + " trying to call B.last()");
+            System.out.println(name + " пытается вызвать метод B.last()");
             b.last();
         }
 
         synchronized void last() {
-            System.out.println("Inside A.last");
+            System.out.println("В методе A.last()");
         }
     }
 
     static class B {
         synchronized void bar(A a) {
             String name = Thread.currentThread().getName();
-            System.out.println(name + " entered B.bar");
+            System.out.println(name + " вошел в метод B.bar()");
 
             try {
                 Thread.sleep(1000);
             } catch(Exception e) {
-                System.out.println("B Interrupted");
+                System.out.println("Класс B прерван");
             }
 
-            System.out.println(name + " trying to call A.last()");
+            System.out.println(name + " пытается вызвать метод A.last()");
             a.last();
         }
 
         synchronized void last() {
-            System.out.println("Inside A.last");
+            System.out.println("В методе A.last()");
         }
     }
 
@@ -48,19 +49,19 @@ public class Deadlock implements Runnable {
     Thread t;
 
     Deadlock() {
-        Thread.currentThread().setName("MainThread");
-        t = new Thread(this, "RacingThread");
+        Thread.currentThread().setName("Главный поток");
+        t = new Thread(this, "Соперничающий поок");
     }
 
     void deadlockStart() {
-        t.start();
-        a.foo(b); // get lock on a in this thread.
-        System.out.println("Back in main thread");
+        t.start(); // get lock on a in this thread.
+        a.foo(b);  // получить блокировку для объекта a в данном потоке исполнения
+        System.out.println("Назад в главный поток");
     }
 
-    public void run() {
-        b.bar(a); // get lock on b in other thread.
-        System.out.println("Back in other thread");
+    public void run() { // get lock on b in other thread.
+        b.bar(a);       // получить блокировку для объекта b в другом потоке исполнения
+        System.out.println("Назад в другой поток");
     }
 
     public static void main(String args[]) {

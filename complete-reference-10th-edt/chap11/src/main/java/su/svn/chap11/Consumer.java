@@ -6,7 +6,7 @@ public class Consumer implements Runnable {
 
     Consumer(Q q) {
         this.q = q;
-        t = new Thread(this, "Consumer");
+        t = new Thread(this, "Потребитель");
     }
 
     public void run() {

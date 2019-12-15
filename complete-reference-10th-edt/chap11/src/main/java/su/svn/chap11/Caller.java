@@ -12,8 +12,9 @@ public class Caller implements Runnable {
     }
 
     // synchronize calls to call()
+    // синхронизированные вызовы метода call()
     public void run() {
-        synchronized (target) { // synchronized block
+        synchronized (target) { // synchronized block / синхронизированный блок
             target.call(msg);
         }
     }
