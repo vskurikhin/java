@@ -2,19 +2,20 @@ package su.svn.chap11;
 
 //  listing 8
 // An incorrect implementation of a producer and consumer.
+// Неправильная реализация поставщика и потребителя
 
 public class PC {
     static class Q {
         int n;
 
         synchronized int get() {
-            System.out.println("Got: " + n);
+            System.out.println("Получено: " + n);
             return n;
         }
 
         synchronized void put(int n) {
             this.n = n;
-            System.out.println("Put: " + n);
+            System.out.println("Отправлено: " + n);
         }
     }
 
@@ -24,7 +25,7 @@ public class PC {
 
         Producer(Q q) {
             this.q = q;
-            t = new Thread(this, "Producer");
+            t = new Thread(this, "Поставщик");
         }
 
         public void run() {
@@ -42,7 +43,7 @@ public class PC {
 
         Consumer(Q q) {
             this.q = q;
-            t = new Thread(this, "Consumer");
+            t = new Thread(this, "Потребитель");
         }
 
         public void run() {
@@ -58,9 +59,10 @@ public class PC {
         Consumer c = new Consumer(q);
 
         // Start the threads.
+        // Запустить потоки исполнения
         p.t.start();
         c.t.start();
 
-        System.out.println("Press Control-C to stop.");
+        System.out.println("Для остановки нажмите Ctrl+C.");
     }
 }

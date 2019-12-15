@@ -1,6 +1,7 @@
 package su.svn.chap11;
 
 // A correct implementation of a producer and consumer.
+// Правильная реализация поставщика и потребителя
 public class Q {
     int n;
     boolean valueSet = false;
@@ -11,10 +12,10 @@ public class Q {
                 wait();
 
             } catch (InterruptedException e) {
-                System.out.println("InterruptedException caught");
+                System.out.println("Исключение типа InterruptedException перехвачено");
             }
 
-        System.out.println("Got: " + n);
+        System.out.println("Получено: " + n);
         valueSet = false;
         notify();
         return n;
@@ -25,12 +26,12 @@ public class Q {
             try {
                 wait();
             } catch (InterruptedException e) {
-                System.out.println("InterruptedException caught");
+                System.out.println("Исключение типа InterruptedException перехвачено");
             }
 
         this.n = n;
         valueSet = true;
-        System.out.println("Put: " + n);
+        System.out.println("Отправлено: " + n);
         notify();
     }
 }
